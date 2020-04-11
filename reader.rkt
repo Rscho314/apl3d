@@ -1,0 +1,6 @@
+#lang racket
+
+(provide read-syntax)
+
+#;(define (read-syntax _ port)
+  (datum->syntax #f `(module mod/j "expander.rkt" ,(lex/j port))))
