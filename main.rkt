@@ -1,18 +1,11 @@
-#lang racket/base
-
-#|TODO:
-   - start parser in lang.rkt
-   - make tokens structs, to allow glyph storage & help with error messages
-|#
+#lang racket
 
 (module+ test
-  (require rackunit))
+  (require rackunit
+           "lang.rkt"))
 
-(module+ test)
-
-#;(module+ reader
-  (require "reader.rkt")
-  (provide read-syntax))
+(module+ test
+   (check-true (program? (list (list #'≥ >= '((0 0 0)) '((0 0 1)))))))
 
 (module+ main
   (require racket/cmdline
@@ -20,4 +13,4 @@
   (command-line
     #:program "apl3d-interpreter"
     #:args (src)
-    (printf "~a~n" (lex src))))
+    (call-with-input-string src read)))
